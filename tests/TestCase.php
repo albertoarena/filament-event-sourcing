@@ -100,7 +100,7 @@ abstract class TestCase extends Orchestra
     {
         $base = __DIR__.'/Fixtures/database/migrations';
 
-        foreach (['create_users_table', 'create_posts_table'] as $name) {
+        foreach (['create_users_table', 'create_posts_table', 'create_articles_table', 'create_comments_table'] as $name) {
             (include "{$base}/{$name}.php")->up();
         }
     }

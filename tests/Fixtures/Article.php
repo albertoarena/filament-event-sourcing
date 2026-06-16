@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Albertoarena\FilamentEventSourcing\Tests\Fixtures;
 
 use Albertoarena\FilamentEventSourcing\Concerns\HasStoredEvents;
-use Spatie\EventSourcing\Projections\Projection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property string $uuid
- * @property string $title
- * @property string $body
+ * Fixture with an `id` primary key and the aggregate uuid in a config-named `ref` column.
+ *
+ * @property string $ref
  */
-final class Post extends Projection
+final class Article extends Model
 {
     use HasStoredEvents;
 

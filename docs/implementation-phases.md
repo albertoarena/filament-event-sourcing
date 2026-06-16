@@ -36,8 +36,8 @@ works before any package code depends on it.
 
 ## Phase 2 — HasStoredEvents trait
 
-- [ ] Trait per spec §3, stored-event model resolved from Spatie config
-- [ ] `getAggregateUuidColumn()` model override support
+- [x] Trait per spec §3, stored-event model resolved from Spatie config
+- [x] `getAggregateUuidColumn()` model override support
 
 **Tests first:** relation returns the aggregate's events in order; respects a custom uuid
 column via config; respects the per-model override; uses a custom stored-event model when

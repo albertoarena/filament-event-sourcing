@@ -6,3 +6,6 @@ parameters:
     paths:
         - src
     tmpDir: build/phpstan
+    ignoreErrors:
+        # Concern traits are public API consumed by downstream models, never used within src itself.
+        - identifier: trait.unused
