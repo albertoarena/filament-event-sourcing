@@ -23,11 +23,11 @@ Every phase starts by writing the tests listed under "Tests first".
 
 ## Phase 1 — Fixture domain
 
-- [ ] `Post` projection model (uuid pk), migration
-- [ ] `PostCreated` / `PostTitleChanged` / `PostDeleted` events
-- [ ] `PostAggregate` with `createPost`, `changeTitle`, `deletePost`
-- [ ] `PostProjector` (synchronous), registered in TestCase via Projectionist
-- [ ] Fixture panel provider + login-less auth setup suitable for Livewire tests
+- [x] `Post` projection model (uuid pk), migration
+- [x] `PostCreated` / `PostTitleChanged` / `PostDeleted` events
+- [x] `PostAggregate` with `createPost`, `changeTitle`, `deletePost`
+- [x] `PostProjector` (synchronous), registered in TestCase via Projectionist
+- [x] Fixture panel provider + login-less auth setup suitable for Livewire tests
       (follow Filament's own plugin-testing approach; read vendor tests if unsure)
 
 **Tests first:** `it('projects a created post')`, `it('projects a title change')`,
