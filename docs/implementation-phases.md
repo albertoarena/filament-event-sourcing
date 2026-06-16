@@ -45,9 +45,9 @@ Spatie config points to one.
 
 ## Phase 3 — Stored Events browser resource
 
-- [ ] Resource + List page + View (spec §4), registered conditionally by the plugin
-- [ ] Plugin class with `storedEventsResource()` fluent option
-- [ ] Config-driven navigation group/sort/per-page
+- [x] Resource + List page + View (spec §4), registered conditionally by the plugin
+- [x] Plugin class with `storedEventsResource()` fluent option
+- [x] Config-driven navigation group/sort/per-page
 
 **Tests first (pest-plugin-livewire):** list renders and shows seeded events; filters by
 event class and aggregate uuid; resource absent from the panel when the plugin option is off;
