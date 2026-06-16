@@ -122,6 +122,16 @@ composer format          # vendor/bin/pint
 Define these scripts in composer.json during Phase 0. Run `composer test && composer analyse`
 before every commit. Run `composer format` before every commit.
 
+## Pre-commit checklist
+
+Run through this every time, before every commit. Do not commit until all applicable items pass.
+
+- [ ] **Pint** — run `composer format` (the code is formatted, not just checked).
+- [ ] **Tests** — `composer test` is green (and `composer analyse` is clean, per the rule above).
+- [ ] **Docs website** — once the Astro site exists (Phase 8), update `website/` content for any
+      behaviour the commit changes. (Not applicable before Phase 8.)
+- [ ] **README** — update `README.md` if the commit changes anything it documents.
+
 ## Git Commit Conventions
 
 ### Format
