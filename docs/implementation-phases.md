@@ -6,18 +6,18 @@ Every phase starts by writing the tests listed under "Tests first".
 
 ## Phase 0 — Skeleton & toolchain
 
-- [ ] `composer.json`: name `albertoarena/filament-event-sourcing`, MIT, PSR-4 autoload
+- [x] `composer.json`: name `albertoarena/filament-event-sourcing`, MIT, PSR-4 autoload
       (`Albertoarena\\FilamentEventSourcing\\` → `src/`, tests namespace → `tests/`),
       requires per CLAUDE.md, scripts (`test`, `test-coverage`, `analyse`, `format`)
-- [ ] Service provider via `spatie/laravel-package-tools`: name, config file
-- [ ] `config/filament-event-sourcing.php` per spec §2
-- [ ] `tests/TestCase.php`: testbench, register Spatie ES provider + package provider,
+- [x] Service provider via `spatie/laravel-package-tools`: name, config file
+- [x] `config/filament-event-sourcing.php` per spec §2
+- [x] `tests/TestCase.php`: testbench, register Spatie ES provider + package provider,
       sqlite :memory:, run Spatie's stored_events migration
-- [ ] Pest installed and bootstrapped (`tests/Pest.php` binding TestCase)
-- [ ] `phpstan.neon` (larastan, level 6, paths: src), `pint.json` (laravel preset)
-- [ ] GitHub Actions: `tests.yml` matrix PHP 8.2/8.3/8.4 × Laravel 11/12 × Filament 4
+- [x] Pest installed and bootstrapped (`tests/Pest.php` binding TestCase)
+- [x] `phpstan.neon` (larastan, level 6, paths: src), `pint.json` (laravel preset)
+- [x] GitHub Actions: `tests.yml` matrix PHP 8.2/8.3/8.4 × Laravel 11/12 × Filament 4
       (exclude impossible combos), `static.yml` for phpstan + pint
-- [ ] `.gitignore`, `LICENSE.md`, `CHANGELOG.md` (Keep a Changelog format), stub `README.md`
+- [x] `.gitignore`, `LICENSE.md`, `CHANGELOG.md` (Keep a Changelog format), stub `README.md`
 
 **Tests first:** `it('loads the config file')`, `it('boots the service provider')`.
 
