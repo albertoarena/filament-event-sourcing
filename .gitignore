@@ -1,0 +1,33 @@
+# Dependencies
+/vendor/
+composer.lock
+
+# IDE files
+/.idea/
+/.vscode/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Internal/scratch docs (note: the published docs/ folder IS tracked)
+/.docs/
+
+# Build & test artifacts
+/build/
+/.phpunit.cache/
+.phpunit.result.cache
+/coverage/
+
+# Documentation website (Astro)
+/website/node_modules/
+/website/dist/
+/website/.astro/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.backup
+.phpactor.json
