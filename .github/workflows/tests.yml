@@ -32,9 +32,10 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath
           coverage: pcov
-          # Pinned to 2.9: Composer 2.10 blocks every Laravel 11/12 release flagged by a
-          # security advisory, which breaks the compatibility matrix. Revisit once the
-          # advisory range is patched upstream.
+          # Every current Laravel 11 release is flagged by a security advisory, which
+          # composer's insecure-package block would reject. We disable that block via
+          # config.audit.block-insecure in composer.json (the 2.9 key), so pin to 2.9 to
+          # keep that key honored. Revisit once the advisory range is patched upstream.
           tools: composer:2.9
 
       - name: Install dependencies

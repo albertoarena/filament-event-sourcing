@@ -21,7 +21,8 @@ jobs:
           php-version: '8.3'
           extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath
           coverage: none
-          # See tests.yml: pin to 2.9 to avoid Composer 2.10's advisory block on Laravel 11/12.
+          # See tests.yml: pin to 2.9 so config.audit.block-insecure (which lets the flagged
+          # Laravel 11 releases install) is honored.
           tools: composer:2.9
 
       - name: Install dependencies
