@@ -7,6 +7,8 @@ The write bridge keeps Filament's full page lifecycle (form validation, mutate h
 
 The examples below use a `Post` aggregate with `createPost`, `changeTitle` and `deletePost` methods, recording `PostCreated`, `PostTitleChanged` and `PostDeleted` events, plus a synchronous `PostProjector` that maintains a `Post` projection model.
 
+![A Posts resource backed by the write bridge](../../assets/screenshots/posts-list.png)
+
 :::caution
 Projectors must run synchronously for resources managed by Filament. The write bridge reads the projection back immediately after the aggregate persists, so a queued projector will not have created it yet and a `ProjectionNotFoundException` is thrown. Keep the projectors behind managed resources synchronous, or run the queue worker before the read.
 :::
