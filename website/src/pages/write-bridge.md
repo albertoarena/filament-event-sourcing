@@ -1,0 +1,71 @@
+---
+layout: ../layouts/Layout.astro
+title: Write bridge
+description: Route Filament create, edit and delete through your aggregates.
+---
+
+# Write bridge
+
+The write bridge keeps Filament's full page lifecycle (form validation, mutate hooks, notifications and redirects) and replaces only the persistence step. You implement one method per operation; the package generates the uuid, resolves the resulting projection and reports errors.
+
+The examples below use a `Post` aggregate with `createPost`, `changeTitle` and `deletePost` methods, recording `PostCreated`, `PostTitleChanged` and `PostDeleted` events, plus a synchronous `PostProjector` that maintains a `Post` projection model.
+
+<p class="callout"><strong>Warning.</strong> Projectors must run synchronously for resources managed by Filament. The write bridge reads the projection back immediately after the aggregate persists, so a queued projector will not have created it yet and a <code>ProjectionNotFoundException</code> is thrown. Keep the projectors behind managed resources synchronous, or run the queue worker before the read.</p>
+
+## Creating
+
+```php
+use Albertoarena\FilamentEventSourcing\Concerns\CreatesEventSourcedRecord;
+use Filament\Resources\Pages\CreateRecord;
+
+class CreatePost extends CreateRecord
+{
+    use CreatesEventSourcedRecord;
+
+    protected static string $resource = PostResource::class;
+
+    protected function handleAggregateCreation(string $uuid, array $data): void
+    {
+        PostAggregate::retrieve($uuid)
+            ->createPost($data['title'], $data['body'])
+            ->persist();
+    }
+}
+```
+
+The trait generates the uuid with `Str::uuid()`. Override `newAggregateUuid()` if you derive uuids differently.
+
+## Editing
+
+```php
+use Albertoarena\FilamentEventSourcing\Concerns\EditsEventSourcedRecord;
+use Filament\Resources\Pages\EditRecord;
+use Illuminate\Database\Eloquent\Model;
+
+class EditPost extends EditRecord
+{
+    use EditsEventSourcedRecord;
+
+    protected static string $resource = PostResource::class;
+
+    protected function handleAggregateUpdate(Model $record, array $data): void
+    {
+        PostAggregate::retrieve($record->uuid)
+            ->changeTitle($data['title'])
+            ->persist();
+    }
+}
+```
+
+## Deleting
+
+`EventSourcedDeleteAction` keeps the confirmation modal, notification and table refresh of Filament's `DeleteAction`, but never calls `$record->delete()` itself. Your projector owns the projection's lifecycle. Provide a `->using()` closure that calls your aggregate:
+
+```php
+use Albertoarena\FilamentEventSourcing\Actions\EventSourcedDeleteAction;
+
+EventSourcedDeleteAction::make()
+    ->using(fn (Post $record) => PostAggregate::retrieve($record->uuid)->deletePost()->persist());
+```
+
+If you forget the `->using()` closure, the action throws a `LogicException` showing the snippet above.

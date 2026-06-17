@@ -9,8 +9,13 @@
         "cqrs",
         "aggregates"
     ],
-    "homepage": "https://github.com/albertoarena/filament-event-sourcing",
+    "homepage": "https://albertoarena.github.io/filament-event-sourcing",
     "license": "MIT",
+    "support": {
+        "issues": "https://github.com/albertoarena/filament-event-sourcing/issues",
+        "source": "https://github.com/albertoarena/filament-event-sourcing",
+        "docs": "https://albertoarena.github.io/filament-event-sourcing"
+    },
     "authors": [
         {
             "name": "Alberto Arena",

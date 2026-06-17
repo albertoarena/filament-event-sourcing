@@ -106,16 +106,16 @@ server-side execution refuses when config flag is off (direct Livewire call atte
 
 Build only after Phase 7, so the docs describe real shipped behaviour.
 
-- [ ] Scaffold an Astro project under `website/` (own `package.json`; `node_modules` and build
+- [x] Scaffold an Astro project under `website/` (own `package.json`; `node_modules` and build
       output gitignored)
-- [ ] Pages: home (what/why), installation, write bridge, audit tooling, replay page, config
+- [x] Pages: home (what/why), installation, write bridge, audit tooling, replay page, config
       reference - mirroring the README structure (spec §10) without lifting from any other project
-- [ ] Code samples consistent with the `Post` fixtures; natural prose, no em dashes, no emoji in
+- [x] Code samples consistent with the `Post` fixtures; natural prose, no em dashes, no emoji in
       headings
-- [ ] Static build verified (`npm run build`) and a `.github/workflows/deploy-website.yml`
+- [x] Static build verified (`npm run build`) and a `.github/workflows/deploy-website.yml`
       that builds `website/` and deploys to GitHub Pages (push to default branch, path-filtered
       to `website/**`, plus `workflow_dispatch`)
-- [ ] Link the website from the README and `composer.json` homepage
+- [x] Link the website from the README and `composer.json` homepage
 
 **Note:** no Pest tests here; "done" means the site builds cleanly and content matches the
 shipped package. Honour Hard Rule 6 (do not reference other projects).

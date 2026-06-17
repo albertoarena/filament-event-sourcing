@@ -1,0 +1,31 @@
+---
+layout: ../layouts/Layout.astro
+title: Installation
+description: Install the package and register the Filament plugin.
+---
+
+# Installation
+
+```bash
+composer require albertoarena/filament-event-sourcing
+```
+
+Register the plugin on your panel and opt in to the features you want:
+
+```php
+use Albertoarena\FilamentEventSourcing\FilamentEventSourcingPlugin;
+
+$panel->plugin(
+    FilamentEventSourcingPlugin::make()
+        ->storedEventsResource() // the read-only Stored Events browser, off by default
+        ->replayPage()           // the projector replay page, off by default and also config gated
+);
+```
+
+Publish the config if you need to change the defaults:
+
+```bash
+php artisan vendor:publish --tag="filament-event-sourcing-config"
+```
+
+See the [Configuration](../configuration) reference for every option.

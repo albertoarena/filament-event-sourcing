@@ -11,6 +11,8 @@ Filament assumes Eloquent CRUD. Event sourcing routes writes through aggregates 
 
 This package does not generate aggregates, events or projectors, and it does not map form state to domain commands. Those remain your decisions.
 
+Full documentation: [albertoarena.github.io/filament-event-sourcing](https://albertoarena.github.io/filament-event-sourcing).
+
 ## Event history at a glance
 
 Add the `HasStoredEvents` trait to a projection model and you can drop a full, read-only event history onto any record, either as a relation manager or as a slide-over action:
