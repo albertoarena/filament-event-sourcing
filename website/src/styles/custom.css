@@ -1,8 +1,14 @@
+/*
+ * Filament's default primary palette (Tailwind amber).
+ * In Starlight, :root holds the dark theme defaults; light overrides live under
+ * :root[data-theme='light'] (which outranks plain :root), so the light values must be scoped
+ * there to beat Starlight's built-in light accent.
+ */
 :root {
-  /* Filament's default primary palette (Tailwind amber). */
-  --sl-color-accent-low: #fef3c7;
-  --sl-color-accent: #d97706;
-  --sl-color-accent-high: #78350f;
+  /* Dark theme (Starlight default) */
+  --sl-color-accent-low: #451a03;
+  --sl-color-accent: #f59e0b;
+  --sl-color-accent-high: #fde68a;
 
   --sl-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   --sl-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -10,10 +16,10 @@
   --sl-content-width: 50rem;
 }
 
-:root[data-theme='dark'] {
-  --sl-color-accent-low: #451a03;
-  --sl-color-accent: #f59e0b;
-  --sl-color-accent-high: #fde68a;
+:root[data-theme='light'] {
+  --sl-color-accent-low: #fef3c7;
+  --sl-color-accent: #d97706;
+  --sl-color-accent-high: #78350f;
 }
 
 .sl-markdown-content {
