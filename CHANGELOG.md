@@ -16,3 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `StoredEventsRelationManager` for per-record event history on a resource.
 - `EventHistoryAction` slide-over listing the latest events chronologically, capped at 100.
 - `MissingAggregateUuidException` thrown when a record has no aggregate uuid or trait.
+- Write bridge: `CreatesEventSourcedRecord` and `EditsEventSourcedRecord` page traits and
+  `EventSourcedDeleteAction`, routing Filament create, edit and delete through aggregates.
+- `ProjectionNotFoundException` thrown when a projection is missing after an aggregate persist.

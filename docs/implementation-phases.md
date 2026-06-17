@@ -65,10 +65,10 @@ exception; cap notice appears at 101 events.
 
 ## Phase 5 — Write bridge
 
-- [ ] `CreatesEventSourcedRecord` (spec §6a) + `ProjectionNotFoundException`
-- [ ] `EditsEventSourcedRecord` (spec §6b)
-- [ ] `EventSourcedDeleteAction` (spec §6c)
-- [ ] Fixture `PostResource` pages wired with all three
+- [x] `CreatesEventSourcedRecord` (spec §6a) + `ProjectionNotFoundException`
+- [x] `EditsEventSourcedRecord` (spec §6b)
+- [x] `EventSourcedDeleteAction` (spec §6c)
+- [x] Fixture `PostResource` pages wired with all three
 
 **Tests first (through Livewire page tests on the fixture resource):**
 - creating via the form stores a `PostCreated` event AND the projection exists AND
