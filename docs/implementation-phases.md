@@ -94,13 +94,13 @@ server-side execution refuses when config flag is off (direct Livewire call atte
 
 ## Phase 7 — Polish & release prep
 
-- [ ] README per spec §10 (natural prose, no em dashes, runnable examples matching fixtures)
-- [ ] Class-level docblocks on all public classes
-- [ ] Coverage ≥ 90% overall; fill genuine gaps, do not write assertion-free tests
-- [ ] `docs/ideas.md` listing deferred items (bulk actions, queued-projector support,
+- [x] README per spec §10 (natural prose, no em dashes, runnable examples matching fixtures)
+- [x] Class-level docblocks on all public classes
+- [x] Coverage ≥ 90% overall; fill genuine gaps, do not write assertion-free tests
+- [x] `docs/ideas.md` listing deferred items (bulk actions, queued-projector support,
       snapshot browser, aggregate state inspector, replay-all)
-- [ ] CHANGELOG 0.1.0 entry, `.github/ISSUE_TEMPLATE`, `CONTRIBUTING.md`, `SECURITY.md`
-- [ ] Final pass: `composer test-coverage && composer analyse && composer format`
+- [x] CHANGELOG 0.1.0 entry, `.github/ISSUE_TEMPLATE`, `CONTRIBUTING.md`, `SECURITY.md`
+- [x] Final pass: `composer test-coverage && composer analyse && composer format`
 
 ## Phase 8 — Documentation website (Astro)
 
