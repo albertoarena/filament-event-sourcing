@@ -19,3 +19,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Write bridge: `CreatesEventSourcedRecord` and `EditsEventSourcedRecord` page traits and
   `EventSourcedDeleteAction`, routing Filament create, edit and delete through aggregates.
 - `ProjectionNotFoundException` thrown when a projection is missing after an aggregate persist.
+- Config-gated `ReplayProjectors` page (opt-in via the plugin's `replayPage()` option) that
+  replays a projector through the Projectionist and reports the number of events replayed.

@@ -85,8 +85,8 @@ exception; cap notice appears at 101 events.
 
 ## Phase 6 — Replay page
 
-- [ ] `ReplayProjectors` page per spec §7, triple-gated visibility
-- [ ] Replay execution through Projectionist with event-count notification
+- [x] `ReplayProjectors` page per spec §7, triple-gated visibility
+- [x] Replay execution through Projectionist with event-count notification
 
 **Tests first:** page hidden when config flag false even if plugin option true; hidden when
 ability fails; visible when all gates pass; replaying rebuilds a truncated projection table;

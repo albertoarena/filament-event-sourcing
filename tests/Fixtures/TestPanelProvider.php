@@ -44,6 +44,7 @@ final class TestPanelProvider extends PanelProvider
             ->plugin(
                 FilamentEventSourcingPlugin::make()
                     ->storedEventsResource()
+                    ->replayPage()
             );
     }
 }
