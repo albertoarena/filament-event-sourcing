@@ -60,8 +60,25 @@ it('filters by aggregate uuid', function () {
         ->assertCanNotSeeTableRecords(storedEventModel()::where('aggregate_uuid', $second)->get());
 });
 
+it('filters by a created_at date range', function () {
+    $uuid = Str::uuid()->toString();
+    PostAggregate::retrieve($uuid)->createPost('Hello', 'Body')->persist();
+
+    livewire(ListStoredEvents::class)
+        ->filterTable('created_at', [
+            'created_from' => now()->subDay()->toDateString(),
+            'created_until' => now()->addDay()->toDateString(),
+        ])
+        ->assertCanSeeTableRecords(storedEventModel()::all());
+});
+
 it('does not allow creating, editing or deleting', function () {
+    $record = new (storedEventModel());
+
     expect(StoredEventResource::canCreate())->toBeFalse()
+        ->and(StoredEventResource::canEdit($record))->toBeFalse()
+        ->and(StoredEventResource::canDelete($record))->toBeFalse()
+        ->and(StoredEventResource::canDeleteAny())->toBeFalse()
         ->and(StoredEventResource::getPages())->not->toHaveKey('create')
         ->and(StoredEventResource::getPages())->not->toHaveKey('edit');
 });

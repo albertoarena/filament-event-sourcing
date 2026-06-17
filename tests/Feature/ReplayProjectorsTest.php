@@ -40,6 +40,14 @@ it('shows the replay page when every gate passes', function () {
     expect(ReplayProjectors::canAccess())->toBeTrue();
 });
 
+it('hides the replay page when the plugin option is off', function () {
+    config()->set('filament-event-sourcing.replay.enabled', true);
+
+    Filament::setCurrentPanel('minimal');
+
+    expect(ReplayProjectors::canAccess())->toBeFalse();
+});
+
 it('rebuilds a truncated projection when replayed', function () {
     config()->set('filament-event-sourcing.replay.enabled', true);
 
@@ -55,6 +63,16 @@ it('rebuilds a truncated projection when replayed', function () {
         ->assertNotified();
 
     expect(Post::count())->toBe(2);
+});
+
+it('notifies when the requested projector is not registered', function () {
+    config()->set('filament-event-sourcing.replay.enabled', true);
+
+    livewire(ReplayProjectors::class)
+        ->callAction('replay', arguments: ['projector' => 'App\\Does\\Not\\Exist'])
+        ->assertNotified();
+
+    expect(Post::count())->toBe(0);
 });
 
 it('refuses to replay server-side when the config flag is off', function () {

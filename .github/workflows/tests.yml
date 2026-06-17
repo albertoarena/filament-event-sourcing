@@ -49,3 +49,26 @@ jobs:
 
       - name: Run tests
         run: composer test
+
+  coverage:
+    runs-on: ubuntu-latest
+    name: Coverage
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath
+          coverage: pcov
+          # See the test job: pin to 2.9 so config.audit.block-insecure is honored.
+          tools: composer:2.9
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction --no-progress
+
+      - name: Enforce coverage threshold
+        run: composer test-coverage
