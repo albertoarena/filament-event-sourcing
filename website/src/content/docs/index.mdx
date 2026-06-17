@@ -1,0 +1,70 @@
+---
+title: Filament Event Sourcing
+description: Integrate spatie/laravel-event-sourcing with Filament admin panels.
+template: splash
+hero:
+  tagline: Bridge spatie/laravel-event-sourcing with Filament. Write through aggregates, browse stored events, and replay projectors, without hiding either side.
+  actions:
+    - text: Get Started
+      link: /filament-event-sourcing/installation/
+      icon: right-arrow
+      variant: primary
+    - text: Write bridge
+      link: /filament-event-sourcing/write-bridge/
+      variant: secondary
+    - text: View on GitHub
+      link: https://github.com/albertoarena/filament-event-sourcing
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why this package
+
+Filament assumes Eloquent CRUD. Event sourcing routes writes through aggregates and reads through projections. This package bridges the two without hiding either side. You always write the aggregate call; the package provides the plumbing. It does not generate aggregates, events or projectors, and it does not map form state to domain commands.
+
+<CardGrid stagger>
+  <Card title="Write bridge" icon="pencil">
+    Filament create, edit and delete pages persist through your aggregates while keeping the full
+    page lifecycle: validation, mutate hooks, notifications and redirects.
+  </Card>
+  <Card title="Event history" icon="list-format">
+    Drop a read-only event history onto any record, either as a relation manager or a slide-over
+    action, with version, timestamp and an expandable JSON payload per event.
+  </Card>
+  <Card title="Stored Events browser" icon="magnifier">
+    A read-only resource over Spatie's stored events with filters by event class, aggregate uuid
+    and date range, and pretty-printed payloads.
+  </Card>
+  <Card title="Projector replay" icon="rocket">
+    A config-gated page to replay projectors one at a time, reporting how many events were replayed.
+  </Card>
+  <Card title="Primary-key agnostic" icon="approve-check">
+    Works whether your projection uses a uuid primary key or an id primary key with a separate
+    uuid column.
+  </Card>
+  <Card title="Small on purpose" icon="setting">
+    No automatic form-to-command mapping, no queued projectors on managed resources. The package
+    stays focused so your domain stays yours.
+  </Card>
+</CardGrid>
+
+## Requirements
+
+- PHP `^8.2`
+- Laravel `^11.0 | ^12.0`
+- Filament `^4.0`
+- spatie/laravel-event-sourcing `^7.0`
+
+## Next steps
+
+<CardGrid>
+  <Card title="Installation" icon="rocket">
+    [Install the package](/filament-event-sourcing/installation/) and register the plugin on your
+    panel.
+  </Card>
+  <Card title="Write bridge" icon="pencil">
+    [Route create, edit and delete](/filament-event-sourcing/write-bridge/) through your aggregates.
+  </Card>
+</CardGrid>

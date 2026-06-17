@@ -1,16 +1,15 @@
 ---
-layout: ../layouts/Layout.astro
 title: Write bridge
 description: Route Filament create, edit and delete through your aggregates.
 ---
-
-# Write bridge
 
 The write bridge keeps Filament's full page lifecycle (form validation, mutate hooks, notifications and redirects) and replaces only the persistence step. You implement one method per operation; the package generates the uuid, resolves the resulting projection and reports errors.
 
 The examples below use a `Post` aggregate with `createPost`, `changeTitle` and `deletePost` methods, recording `PostCreated`, `PostTitleChanged` and `PostDeleted` events, plus a synchronous `PostProjector` that maintains a `Post` projection model.
 
-<p class="callout"><strong>Warning.</strong> Projectors must run synchronously for resources managed by Filament. The write bridge reads the projection back immediately after the aggregate persists, so a queued projector will not have created it yet and a <code>ProjectionNotFoundException</code> is thrown. Keep the projectors behind managed resources synchronous, or run the queue worker before the read.</p>
+:::caution
+Projectors must run synchronously for resources managed by Filament. The write bridge reads the projection back immediately after the aggregate persists, so a queued projector will not have created it yet and a `ProjectionNotFoundException` is thrown. Keep the projectors behind managed resources synchronous, or run the queue worker before the read.
+:::
 
 ## Creating
 
