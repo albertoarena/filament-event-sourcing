@@ -42,8 +42,14 @@ form state to domain commands. The user always writes the aggregate call; we pro
 6. **Do not reference other projects.** Never name, link to, or copy from other repositories or
    packages (the maintainer's own or third-party) in code, comments, docs, README, the docs website,
    or commit messages. The only allowed external references are the dependencies this package
-   actually requires (Filament, spatie/laravel-event-sourcing) and the two "Related packages" links
-   the spec explicitly calls for in the README (§10).
+   actually requires (Filament, spatie/laravel-event-sourcing), the two "Related packages" links
+   the spec explicitly calls for in the README (§10), and the GitHub traffic badge below.
+
+## README badges
+
+Add a GitHub traffic badge to the README, generated with the maintainer's
+`github-traffic-badge` package: https://github.com/albertoarena/github-traffic-badge. This is an
+explicit exception to Hard Rule 6.
 
 ## Tech stack and constraints
 

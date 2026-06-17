@@ -3,6 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/albertoarena/filament-event-sourcing.svg)](https://packagist.org/packages/albertoarena/filament-event-sourcing)
 [![Tests](https://github.com/albertoarena/filament-event-sourcing/actions/workflows/tests.yml/badge.svg)](https://github.com/albertoarena/filament-event-sourcing/actions/workflows/tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/albertoarena/filament-event-sourcing.svg)](https://packagist.org/packages/albertoarena/filament-event-sourcing)
+[![Repo views](https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/traffic-data/badge.svg)](https://github.com/albertoarena/filament-event-sourcing)
 
 Integrate [spatie/laravel-event-sourcing](https://spatie.be/docs/laravel-event-sourcing/v7/introduction) with [Filament](https://filamentphp.com) admin panels.
 
