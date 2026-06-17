@@ -13,3 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `HasStoredEvents` model concern exposing a `storedEvents()` relation.
 - `FilamentEventSourcingPlugin` with an opt-in `storedEventsResource()` option.
 - Read-only Stored Events browser resource (list and view) over the configured stored-event model.
+- `StoredEventsRelationManager` for per-record event history on a resource.
+- `EventHistoryAction` slide-over listing the latest events chronologically, capped at 100.
+- `MissingAggregateUuidException` thrown when a record has no aggregate uuid or trait.

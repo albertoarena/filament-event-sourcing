@@ -55,9 +55,9 @@ create/edit/delete are not available; view shows pretty-printed payload.
 
 ## Phase 4 — Event history
 
-- [ ] `StoredEventsRelationManager` (spec §5a)
-- [ ] `EventHistoryAction` (spec §5b) incl. 100-event cap notice
-- [ ] `MissingAggregateUuidException`
+- [x] `StoredEventsRelationManager` (spec §5a)
+- [x] `EventHistoryAction` (spec §5b) incl. 100-event cap notice
+- [x] `MissingAggregateUuidException`
 
 **Tests first:** relation manager lists only the record's events; history action modal
 renders events chronologically; action on a model without the trait/uuid throws the

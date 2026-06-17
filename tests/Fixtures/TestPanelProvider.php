@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Albertoarena\FilamentEventSourcing\Tests\Fixtures;
 
 use Albertoarena\FilamentEventSourcing\FilamentEventSourcingPlugin;
+use Albertoarena\FilamentEventSourcing\Tests\Fixtures\Filament\PostResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -36,6 +37,9 @@ final class TestPanelProvider extends PanelProvider
             ], isPersistent: true)
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->resources([
+                PostResource::class,
             ])
             ->plugin(
                 FilamentEventSourcingPlugin::make()

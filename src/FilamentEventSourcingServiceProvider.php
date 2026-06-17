@@ -19,6 +19,7 @@ final class FilamentEventSourcingServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('filament-event-sourcing')
-            ->hasConfigFile();
+            ->hasConfigFile()
+            ->hasViews();
     }
 }
