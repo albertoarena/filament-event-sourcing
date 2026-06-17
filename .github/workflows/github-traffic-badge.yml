@@ -17,4 +17,4 @@ jobs:
           token: ${{ secrets.TRAFFIC_TOKEN }}
           metric: views
           color: blue
-          label: 'Repo views'
+          label: 'repo views'
