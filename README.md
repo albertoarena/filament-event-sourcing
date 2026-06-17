@@ -173,6 +173,21 @@ Enable `replayPage()` on the plugin to add a page that replays projectors one at
 > [!WARNING]
 > A replay runs synchronously inside the web request and can take a long time on large event stores. For production, prefer the CLI: `php artisan event-sourcing:replay`.
 
+Replays must be safe to run. Spatie's replay does not wipe your read model: a full replay calls `resetState()` on each projector only if that method exists. Projectors behind Filament managed resources should be replay safe, either by implementing `resetState()` to clear their projection, or by making their handlers idempotent (for example with `updateOrCreate`). This package does not reset projections for you.
+
+## Adopting in an existing app
+
+When you add this package to an app that already has data, new and existing records behave differently.
+
+Records created through your aggregates after adoption are fully event sourced. Their events live in the stored events table, so they appear in the audit tooling and a projector replay rebuilds them.
+
+Rows that already existed, created by ordinary Eloquent writes, have no events behind them. They keep working for reads, but they are not event sourced:
+
+- Editing one through the write bridge produces an incomplete event stream, a change event with no preceding creation event.
+- They are not replayable. A replay rebuilds the read model from the event store, so records with no events are not recreated, and a replay that resets the projection first will drop them.
+
+To bring existing rows into the model, backfill one initial event per row, a one-off command you write that records their current state, so the event store becomes the source of truth. This package does not perform that CRUD to event sourcing migration for you; it is a domain decision that only you can make.
+
 ## Configuration
 
 ```php
@@ -215,6 +230,7 @@ See [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
 
 ## Related packages
 
+- [albertoarena/filament-event-sourcing-demo](https://github.com/albertoarena/filament-event-sourcing-demo) is a working Filament app that integrates this package, with screenshots of every feature.
 - [albertoarena/laravel-event-sourcing-generator](https://github.com/albertoarena/laravel-event-sourcing-generator) generates aggregates, events, projectors and reactors for bounded contexts.
 - The `laravel-spatie-event-sourcing` Claude Code skill helps design event-sourced domains and scaffold code.
 

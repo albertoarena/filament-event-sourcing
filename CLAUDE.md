@@ -43,7 +43,9 @@ form state to domain commands. The user always writes the aggregate call; we pro
    packages (the maintainer's own or third-party) in code, comments, docs, README, the docs website,
    or commit messages. The only allowed external references are the dependencies this package
    actually requires (Filament, spatie/laravel-event-sourcing), the two "Related packages" links
-   the spec explicitly calls for in the README (§10), and the GitHub traffic badge below.
+   the spec explicitly calls for in the README (§10), the GitHub traffic badge below, and the demo
+   app `albertoarena/filament-event-sourcing-demo` (a public, working integration of this package,
+   linked from the README and the docs website).
 
 ## README badges
 

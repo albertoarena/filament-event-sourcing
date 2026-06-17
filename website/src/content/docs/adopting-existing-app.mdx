@@ -1,0 +1,27 @@
+---
+title: Adopting in an existing app
+description: How the package behaves when added to an app that already has data.
+---
+
+When you add this package to an app that already has data, new and existing records behave differently.
+
+## New records
+
+Records created through your aggregates after adoption are fully event sourced. Their events live in the stored events table, so they appear in the audit tooling, and a projector replay rebuilds them.
+
+## Pre-existing rows
+
+Rows that already existed, created by ordinary Eloquent writes, have no events behind them. They keep working for reads, but they are not event sourced:
+
+- Editing one through the write bridge produces an incomplete event stream, a change event with no preceding creation event.
+- They are not replayable. A replay rebuilds the read model from the event store, so records with no events are not recreated, and a replay that resets the projection first will drop them.
+
+:::caution
+A projector replay can drop pre-existing rows that have no events. Backfill events for them first if you want them to survive a replay.
+:::
+
+## Bringing existing rows into the model
+
+Backfill one initial event per row, a one-off command you write that records the row's current state, so the event store becomes the source of truth. After that, the projection is fully replayable.
+
+This package does not perform that CRUD to event sourcing migration for you. It is a domain decision that only you can make.

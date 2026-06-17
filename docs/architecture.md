@@ -187,6 +187,10 @@ EventSourcedDeleteAction::make()
 - No soft-delete handling beyond what the user's projector does.
 - Bulk actions: out of scope for v1; users can compose `EventSourcedDeleteAction` semantics
   themselves. Note in docs/ideas.md.
+- No CRUD-to-event-sourcing migration. Rows that predate adoption have no events: they keep
+  working for reads but are not replayable, and editing them through the bridge yields an
+  incomplete stream. Backfilling initial events for existing rows is the user's domain decision.
+  Documented in the README "Adopting in an existing app" section.
 
 ## 7. Replay page (config-gated)
 

@@ -7,8 +7,32 @@ Enable `replayPage()` on the plugin to add a page that replays projectors one at
 
 The page lists the registered projectors and offers a confirmation-guarded Replay action for each. When a replay finishes, a notification reports how many events were replayed.
 
+![The replay confirmation modal](../../assets/screenshots/replay-step-2-confirmation.png)
+
+![The replay result notification](../../assets/screenshots/replay-step-3-notification.png)
+
 :::caution
 A replay runs synchronously inside the web request and can take a long time on large event stores. For production, prefer the CLI: `php artisan event-sourcing:replay`.
 :::
+
+## Projectors must be replay-safe
+
+Spatie's replay does not wipe your read model. A full replay calls `resetState()` on each projector only if that method exists. A projector that simply inserts in its creation handler will hit a unique constraint on replay because the existing rows are still there.
+
+Make projectors behind Filament managed resources replay-safe, either by implementing `resetState()` to clear their projection, or by making their handlers idempotent (for example with `updateOrCreate`). This package does not reset projections for you.
+
+```php
+use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
+
+class PostProjector extends Projector
+{
+    public function resetState(): void
+    {
+        Post::query()->delete();
+    }
+
+    // event handlers...
+}
+```
 
 See the [Configuration](/filament-event-sourcing/configuration/) reference for the `replay.enabled` and `replay.authorize` options.

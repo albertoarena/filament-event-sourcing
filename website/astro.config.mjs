@@ -31,6 +31,7 @@ export default defineConfig({
             { label: 'Write bridge', link: '/write-bridge/' },
             { label: 'Audit tooling', link: '/audit-tooling/' },
             { label: 'Replay page', link: '/replay-page/' },
+            { label: 'Adopting in an existing app', link: '/adopting-existing-app/' },
           ],
         },
         {
