@@ -11,6 +11,7 @@ composer.lock
 
 # Internal/scratch docs (note: the published docs/ folder IS tracked)
 /.docs/
+/.claude/next-session.md
 
 # Build & test artifacts
 /build/
