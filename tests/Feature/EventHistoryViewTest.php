@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Albertoarena\FilamentEventSourcing\Actions\EventHistoryAction;
+use Albertoarena\FilamentEventSourcing\Tests\Fixtures\Events\PostDeleted;
 use Albertoarena\FilamentEventSourcing\Tests\Fixtures\Post;
 use Albertoarena\FilamentEventSourcing\Tests\Fixtures\PostAggregate;
 use Illuminate\Support\Collection;
@@ -73,7 +74,7 @@ it('marks changed events with the changed category', function () {
 
 it('marks deleted events with the deleted category', function () {
     $post = newPost();
-    appendStoredEvent($post->uuid, 2, \Albertoarena\FilamentEventSourcing\Tests\Fixtures\Events\PostDeleted::class, []);
+    appendStoredEvent($post->uuid, 2, PostDeleted::class, []);
 
     expect(renderEventHistory($post))->toContain('fes-event is-deleted');
 });
