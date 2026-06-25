@@ -20,35 +20,6 @@
             default => 'default',
         };
     };
-
-    $highlightJson = static function (array $payload): string {
-        $json = json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-
-        if ($json === false || $json === '[]') {
-            return '<span class="fes-json-empty">{ }</span>';
-        }
-
-        // Escape markup but keep quotes intact so the tokenizer can see strings.
-        $json = htmlspecialchars($json, ENT_NOQUOTES);
-
-        $pattern = '/(?<str>"(?:\\\\.|[^"\\\\])*")(?<colon>\s*:)?|(?<bool>\btrue\b|\bfalse\b|\bnull\b)|(?<num>-?\d+(?:\.\d+)?(?:[eE][+\-]?\d+)?)/';
-
-        return preg_replace_callback($pattern, static function (array $m): string {
-            if (($m['str'] ?? '') !== '') {
-                if (($m['colon'] ?? '') !== '') {
-                    return '<span class="fes-json-key">'.$m['str'].'</span>'.$m['colon'];
-                }
-
-                return '<span class="fes-json-string">'.$m['str'].'</span>';
-            }
-
-            if (($m['bool'] ?? '') !== '') {
-                return '<span class="fes-json-bool">'.$m['bool'].'</span>';
-            }
-
-            return '<span class="fes-json-number">'.$m['num'].'</span>';
-        }, $json);
-    };
 @endphp
 
 <style>
@@ -221,29 +192,12 @@
         opacity: 0.7;
     }
 
-    .fes-code {
-        margin: 0;
-        padding: 0.75rem 0.875rem;
-        border-top: 1px solid var(--fes-border);
-        background: var(--fes-code-bg);
-        overflow-x: auto;
-        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-        font-size: 0.75rem;
-        line-height: 1.5;
-        tab-size: 2;
+    /* The JSON block comes from the shared partial; attach it to the card header
+       by dropping its standalone frame (rounded corners + full border). */
+    .fi-fes-event-history .fes-card .fes-code {
+        border-width: 1px 0 0 0;
+        border-radius: 0;
     }
-
-    .fes-code code {
-        font: inherit;
-        color: var(--fes-json-punct);
-        white-space: pre;
-    }
-
-    .fes-json-key { color: var(--fes-json-key); }
-    .fes-json-string { color: var(--fes-json-string); }
-    .fes-json-number { color: var(--fes-json-number); }
-    .fes-json-bool { color: var(--fes-json-bool); font-style: italic; }
-    .fes-json-empty { color: var(--fes-muted); font-style: italic; }
 
     .fes-empty {
         display: flex;
@@ -300,7 +254,9 @@
                             {{ $event->created_at }}
                         </span>
                     </div>
-                    <pre class="fi-fes-event-history-payload fes-code"><code>{!! $highlightJson($payload ?? []) !!}</code></pre>
+                    <div class="fi-fes-event-history-payload">
+                        @include('filament-event-sourcing::partials.json-payload', ['payload' => $payload ?? []])
+                    </div>
                 </div>
             </li>
 

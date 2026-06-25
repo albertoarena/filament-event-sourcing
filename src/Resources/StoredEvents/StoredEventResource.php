@@ -93,6 +93,7 @@ final class StoredEventResource extends Resource
                 TextColumn::make('event_class')
                     ->label('Event')
                     ->badge()
+                    ->color(fn (string $state): string => self::eventColor($state))
                     ->formatStateUsing(fn (string $state): string => class_basename($state))
                     ->tooltip(fn (TextColumn $column): string => (string) $column->getState()),
                 TextColumn::make('created_at')
@@ -134,15 +135,21 @@ final class StoredEventResource extends Resource
                 TextEntry::make('id')->label('ID'),
                 TextEntry::make('aggregate_uuid')->label('Aggregate UUID')->copyable(),
                 TextEntry::make('aggregate_version')->label('Version'),
-                TextEntry::make('event_class')->label('Event'),
+                TextEntry::make('event_class')
+                    ->label('Event')
+                    ->badge()
+                    ->color(fn (string $state): string => self::eventColor($state))
+                    ->formatStateUsing(fn (string $state): string => class_basename($state)),
                 TextEntry::make('created_at')->label('Recorded at')->dateTime(),
                 TextEntry::make('event_properties')
                     ->label('Event properties')
                     ->html()
+                    ->columnSpanFull()
                     ->state(fn ($record): HtmlString => self::jsonBlock($record->event_properties)),
                 TextEntry::make('meta_data')
                     ->label('Metadata')
                     ->html()
+                    ->columnSpanFull()
                     ->state(fn ($record): HtmlString => self::jsonBlock($record->meta_data)),
             ]);
     }
@@ -155,18 +162,30 @@ final class StoredEventResource extends Resource
         ];
     }
 
+    /**
+     * Render a payload as a syntax-highlighted JSON block, shared with the event-history view.
+     */
     protected static function jsonBlock(mixed $value): HtmlString
     {
-        if (is_object($value) && method_exists($value, 'toArray')) {
-            $decoded = $value->toArray();
-        } elseif (is_string($value)) {
-            $decoded = json_decode($value, true);
-        } else {
-            $decoded = $value;
-        }
+        /** @var view-string $view */
+        $view = 'filament-event-sourcing::partials.json-payload';
 
-        $json = json_encode($decoded ?? [], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?: '{}';
+        return new HtmlString(view($view, ['payload' => $value])->render());
+    }
 
-        return new HtmlString('<pre class="fi-code-block">'.e($json).'</pre>');
+    /**
+     * Map a stored event class to a Filament badge colour, mirroring the event-history timeline.
+     */
+    protected static function eventColor(string $class): string
+    {
+        $name = class_basename($class);
+
+        return match (true) {
+            str_contains($name, 'Created') => 'success',
+            str_contains($name, 'Deleted') => 'danger',
+            str_contains($name, 'Failed') => 'warning',
+            str_contains($name, 'Changed'), str_contains($name, 'Updated') => 'info',
+            default => 'gray',
+        };
     }
 }

@@ -94,6 +94,19 @@ it('shows the pretty printed payload on the view page', function () {
         ->assertSee('Hello');
 });
 
+it('renders the payload as highlighted JSON on the view page', function () {
+    $uuid = Str::uuid()->toString();
+    PostAggregate::retrieve($uuid)->createPost('Hello', 'Body')->persist();
+
+    $record = storedEventModel()::first();
+
+    livewire(ViewStoredEvent::class, ['record' => $record->getKey()])
+        ->assertSuccessful()
+        ->assertSee('fes-json-key', false)
+        ->assertSee('fes-json-string', false)
+        ->assertSee('PostCreated');
+});
+
 it('registers the resource only when the plugin option is enabled', function () {
     expect(Filament::getPanel('admin')->getResources())
         ->toContain(StoredEventResource::class)
