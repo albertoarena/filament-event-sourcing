@@ -9,6 +9,11 @@ export default defineConfig({
     starlight({
       title: 'Filament Event Sourcing',
       description: 'Integrate spatie/laravel-event-sourcing with Filament admin panels.',
+      head: [
+        { tag: 'meta', attrs: { property: 'og:image', content: 'https://albertoarena.github.io/filament-event-sourcing/cover.png' } },
+        { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://albertoarena.github.io/filament-event-sourcing/cover.png' } },
+        { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
+      ],
       social: {
         github: 'https://github.com/albertoarena/filament-event-sourcing',
       },
