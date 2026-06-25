@@ -1,14 +1,23 @@
 /*
- * Filament's default primary palette (Tailwind amber).
+ * Brand identity — align the docs with the Filament Event Sourcing landing page
+ * and README cover: amber/gold accent, extra-bold tight headings, and a
+ * gold-gradient wordmark + hero title.
+ *
  * In Starlight, :root holds the dark theme defaults; light overrides live under
- * :root[data-theme='light'] (which outranks plain :root), so the light values must be scoped
- * there to beat Starlight's built-in light accent.
+ * :root[data-theme='light'] (which outranks plain :root). The gold gradient is
+ * theme-aware so it stays readable on the light (white) splash while popping on
+ * dark. Body links/active states keep an accessible amber in light mode; the
+ * bright gradient is reserved for large display text.
  */
 :root {
   /* Dark theme (Starlight default) */
   --sl-color-accent-low: #451a03;
   --sl-color-accent: #f59e0b;
-  --sl-color-accent-high: #fde68a;
+  --sl-color-accent-high: #fcd34d;
+
+  /* Brand gold gradient — bright, for dark backgrounds */
+  --fes-gold-from: #fcd34d;
+  --fes-gold-to: #f59e0b;
 
   --sl-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   --sl-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -20,6 +29,37 @@
   --sl-color-accent-low: #fef3c7;
   --sl-color-accent: #d97706;
   --sl-color-accent-high: #78350f;
+
+  /* Deeper gradient keeps display text readable on white */
+  --fes-gold-from: #f59e0b;
+  --fes-gold-to: #b45309;
+}
+
+/* Signature gold-gradient wordmark + hero title */
+.site-title span,
+.hero h1 {
+  background: linear-gradient(95deg, var(--fes-gold-from), var(--fes-gold-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 {
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+/* Extra-bold, tight content headings to match the landing/README typography */
+.sl-markdown-content :is(h1, h2, h3) {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hero .tagline {
+  font-size: 1.125rem;
+  line-height: 1.6;
 }
 
 .sl-markdown-content {
