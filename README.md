@@ -13,7 +13,8 @@ Filament assumes Eloquent CRUD. Event sourcing routes writes through aggregates 
 
 This package does not generate aggregates, events or projectors, and it does not map form state to domain commands. Those remain your decisions.
 
-Full documentation: [albertoarena.github.io/filament-event-sourcing](https://albertoarena.github.io/filament-event-sourcing).
+[![Read the docs](https://img.shields.io/badge/Read%20the%20docs-f59e0b?style=for-the-badge)](https://albertoarena.github.io/filament-event-sourcing)
+[![Demo app](https://img.shields.io/badge/Demo%20app-f59e0b?style=for-the-badge)](https://github.com/albertoarena/filament-event-sourcing-demo)
 
 ## Event history at a glance
 
@@ -232,9 +233,8 @@ See [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
 
 ## Related packages
 
-- [albertoarena/filament-event-sourcing-demo](https://github.com/albertoarena/filament-event-sourcing-demo) is a working Filament app that integrates this package, with screenshots of every feature.
 - [albertoarena/laravel-event-sourcing-generator](https://github.com/albertoarena/laravel-event-sourcing-generator) generates aggregates, events, projectors and reactors for bounded contexts.
-- The `laravel-spatie-event-sourcing` Claude Code skill helps design event-sourced domains and scaffold code.
+- [albertoarena/claude-laravel-event-sourcing](https://github.com/albertoarena/claude-laravel-event-sourcing) is a Claude Code skill that helps design event-sourced domains and scaffold code.
 
 ## License
 
