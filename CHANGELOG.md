@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-26
+
+### Changed
+
+- Restyle the event-history slide-over as a timeline with per-event badges, version pills,
+  timestamps and server-side syntax-highlighted JSON. Self-contained and theme-aware
+  (light/dark) with no build step required in the host panel.
+- Modernise the Stored Events resource: payloads and metadata render as syntax-highlighted JSON,
+  and the event class shows as a colour-coded badge in both the list and view pages.
+- Share a single `filament-event-sourcing::partials.json-payload` view between the event-history
+  slide-over and the Stored Events resource for consistent, highlighted JSON.
+
 ## [0.1.0] - 2026-06-17
 
 ### Added
