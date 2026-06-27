@@ -1,7 +1,7 @@
 # Filament Event Sourcing
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/main/art/filamentphp/image-dark.jpg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/main/art/filamentphp/image-dark.jpg" class="filament-hidden">
   <img src="https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/main/art/filamentphp/image-light.jpg" alt="Filament Event Sourcing" class="filament-hidden">
 </picture>
 
