@@ -1,6 +1,9 @@
 # Filament Event Sourcing
 
-<img src="https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/main/art/cover-1600x900.png" alt="Filament Event Sourcing" class="filament-hidden">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/main/art/filamentphp/image-dark.jpg">
+  <img src="https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/main/art/filamentphp/image-light.jpg" alt="Filament Event Sourcing" class="filament-hidden">
+</picture>
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/albertoarena/filament-event-sourcing.svg)](https://packagist.org/packages/albertoarena/filament-event-sourcing)
 [![Tests](https://github.com/albertoarena/filament-event-sourcing/actions/workflows/tests.yml/badge.svg)](https://github.com/albertoarena/filament-event-sourcing/actions/workflows/tests.yml)
