@@ -1,6 +1,6 @@
 # Filament Event Sourcing
 
-![Filament Event Sourcing](https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/main/art/cover-1600x900.png)
+<img src="https://raw.githubusercontent.com/albertoarena/filament-event-sourcing/main/art/cover-1600x900.png" alt="Filament Event Sourcing" class="filament-hidden">
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/albertoarena/filament-event-sourcing.svg)](https://packagist.org/packages/albertoarena/filament-event-sourcing)
 [![Tests](https://github.com/albertoarena/filament-event-sourcing/actions/workflows/tests.yml/badge.svg)](https://github.com/albertoarena/filament-event-sourcing/actions/workflows/tests.yml)
