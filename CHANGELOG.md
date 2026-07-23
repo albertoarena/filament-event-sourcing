@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-07-23
+
+First stable release. The public API in `src/` is now covered by Semantic
+Versioning: any breaking change from here will be released as `2.0.0`.
+
+No functional changes from 0.2.1. This release marks the API as stable after
+the write bridge, audit tooling, replay page and documentation website shipped
+and were verified in a public release.
+
 ## [0.2.1] - 2026-07-23
 
 ### Changed
