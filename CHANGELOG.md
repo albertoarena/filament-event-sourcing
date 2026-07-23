@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-07-23
+
+### Changed
+
+- Add a `.gitattributes` file so the Composer `dist` archive excludes development,
+  test, docs and CI files via `export-ignore`, and normalizes line endings. This
+  reduces the size of the package downloaded on `composer require`.
+
 ## [0.2.0] - 2026-06-26
 
 ### Changed
