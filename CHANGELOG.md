@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-08-05
+
+### Added
+
+- Support for Laravel 13. The package now installs on Laravel 11, 12 and 13.
+  Laravel 13 requires PHP 8.3 or newer; Laravel 11 and 12 continue to run on
+  PHP 8.2. The CI matrix covers every supported PHP and Laravel combination.
+
 ## [1.0.0] - 2026-07-23
 
 First stable release. The public API in `src/` is now covered by Semantic
