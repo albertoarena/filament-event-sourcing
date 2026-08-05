@@ -191,4 +191,18 @@ no Claude attribution (per CLAUDE.md).
 - `composer test`, `composer analyse`, and `vendor/bin/pint --test` green locally on the L13 install.
 - README and docs website mention Laravel 13 in requirements.
 - One commit per logical change, imperative subjects, no Claude attribution.
-- filamentphp.com "Current Laravel version supported" warning clears after release.
+
+## Outcome (shipped in v1.1.0, 2026-08-05)
+
+Delivered as planned: constraints widened, Pest 3 to 4 migration needed zero test changes, all 8 CI
+cells green, README and docs website updated. The Plumb / filamentphp.com Package health score rose
+from 77 to 98 (Security 61 to 100 once the SHA-pinning and Dependabot work was scanned).
+
+Decision on the residual warning: the "Current Laravel version supported" check stays a warning and
+that is accepted, not a defect to fix. Plumb resolves at the package's minimum declared PHP (`^8.2`),
+and Laravel 13 requires PHP >= 8.3, so at the 8.2 floor Laravel 13 cannot install and Plumb reports
+"max Laravel 12". The package genuinely supports Laravel 13 on PHP 8.3+ (proven by the 8.3/8.4 x L13 CI
+cells). Clearing the warning would require raising `require.php` to `^8.3`, which drops PHP 8.2 support
+for Laravel 11/12 users: a backward-incompatible narrowing, i.e. a 2.0.0 release, purely to green one
+Ecosystem warning. We keep PHP 8.2 and accept the warning. Do not re-open this without a separate,
+deliberate decision to drop PHP 8.2.
