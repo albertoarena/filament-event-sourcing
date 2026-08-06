@@ -239,6 +239,12 @@ See [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
 - [albertoarena/laravel-event-sourcing-generator](https://github.com/albertoarena/laravel-event-sourcing-generator) generates aggregates, events, projectors and reactors for bounded contexts.
 - [albertoarena/claude-laravel-event-sourcing](https://github.com/albertoarena/claude-laravel-event-sourcing) is a Claude Code skill that helps design event-sourced domains and scaffold code.
 
+## 📬 Stay updated
+
+Occasional emails on Laravel, Filament, and event sourcing: new releases, packages, and write-ups. No spam, unsubscribe anytime.
+
+**[Subscribe to the newsletter →](https://albertoarena.it/subscribe/?utm_source=github&utm_medium=readme&utm_campaign=newsletter&utm_content=filament-event-sourcing)**
+
 ## License
 
 The MIT License (MIT). See [LICENSE.md](LICENSE.md).
