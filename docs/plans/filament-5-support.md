@@ -108,10 +108,11 @@ threshold met.
 ## Commit sequence (one PR, TDD posture)
 
 No behaviour differs between v4 and v5 (the suite passes unchanged on v5), so there is no
-production-code test to write first. The failing-first step is the CI matrix itself, as in the
-Laravel 13 change.
+production-code test to write first. The existing suite, run on both majors, is the test.
 
-1. `ci: add Filament as a test matrix dimension` (Filament 5 legs red, the constraint is still `^4.0`).
+1. `ci: add Filament as a test matrix dimension`. The install step's `composer require` rewrites
+   the constraint per leg, so the Filament 5 legs pass even before the widen; they prove the code
+   works on v5, and the next commit makes `composer.json` allow it.
 2. `feat: support Filament 5` (widen the constraint; all legs green).
 3. `ci: run static analysis on both Filament majors` (PHPStan matrix plus coverage pin).
 4. `docs: document Filament 5 support` (README, website, architecture, CLAUDE.md, ideas).
