@@ -128,3 +128,19 @@ Then close #20 with a link to the PR. No merge or release tag without the mainta
 - A `--prefer-lowest` leg (the floor of `^5.0` is 5.0.0, which lacks Laravel 13; the resolver
   handles that). Note it in `docs/ideas.md` if wanted.
 - Bumping the demo app to Filament 5 (separate repo).
+
+## Outcome (merged in PR #22, 2026-10-12)
+
+Delivered as planned with option A. No source changes were needed. All 18 test legs passed on the
+PR (10 on Filament 4, 8 on Filament 5), along with `Coverage` and `PHPStan and Pint` (both pinned to
+Filament 5) and the new `PHPStan (Filament 4)` job. Locally on PHP 8.4, both Filament 4.15.1 and
+5.10.1 passed 50 tests at 97.0% coverage with PHPStan clean. Dependabot PR #20 was closed in favour
+of #22.
+
+A correction to the first draft of this plan: the commit sequence assumed the Filament 5 legs
+would fail until the constraint was widened. They would not have, because each leg's
+`composer require` rewrites the constraint before installing. The legs prove the code works on
+v5, and `composer.json` is what users actually get.
+
+Still open after merge: tag the release, consider making `PHPStan (Filament 4)` a required check,
+and update the filamentphp.com directory listing requirements.
