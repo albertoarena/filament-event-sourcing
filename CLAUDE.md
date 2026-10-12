@@ -163,8 +163,8 @@ Workflows live in `.github/workflows/`:
   (PHP 8.2/8.3/8.4/8.5 × Laravel 11/12/13 × Filament 4/5; exclude impossible combos). The
   `Coverage` job is pinned to Filament 5. Created in Phase 0.
 - `static.yml` — runs Larastan (level 6) on Filament 4 and 5, and Pint (`--test`), on push and
-  pull request. `Coverage` and `PHPStan and Pint` are required status checks on `main`; do not
-  rename them. Created in Phase 0.
+  pull request. `Coverage`, `PHPStan and Pint` and `PHPStan (Filament 4)` are required status
+  checks on `main`; do not rename them. Created in Phase 0.
 - `deploy-website.yml` — builds the Astro docs site in `website/` (`npm ci && npm run build`)
   and deploys the static output to GitHub Pages. Triggered on push to the default branch
   (path-filtered to `website/**`) and manually via `workflow_dispatch`. Created in Phase 8.
