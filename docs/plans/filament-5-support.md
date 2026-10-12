@@ -74,13 +74,17 @@ transitively.
 
 ### 3. Coverage and PHPStan jobs
 
-Neither job should be the only evidence for a major again, and neither should float silently:
+Neither job should be the only evidence for a major again, and neither should float silently.
+`Coverage` and `PHPStan and Pint` are required status checks on `main`, so their job names stay
+exactly as they are (renaming them would block every merge).
 
-- **PHPStan and Pint**: run as a 2-leg matrix over Filament 4 and 5 (PHP 8.3). Vendor types differ
-  between majors, so analyse against both. Pint runs once.
-- **Coverage**: pin to Filament 5, the newest major, on PHP 8.3, and name the job to say so.
-  Coverage measures our own code, and the matrix already runs the full suite on both majors, so a
-  second coverage run adds cost without adding evidence.
+- **PHPStan and Pint**: pinned to Filament 5 (PHP 8.3). A new job, `PHPStan (Filament 4)`, runs
+  PHPStan against Filament 4. Vendor types differ between majors, so analyse against both. Pint
+  runs once.
+- **Coverage**: pinned to Filament 5 on PHP 8.3, with a comment saying so. Coverage measures our own
+  code, and the matrix already runs the full suite on both majors, so a second coverage run adds
+  cost without adding evidence.
+- The maintainer may want to add `PHPStan (Filament 4)` to the required checks after merge.
 
 ### 4. Docs
 
@@ -114,7 +118,7 @@ production-code test to write first. The existing suite, run on both majors, is 
    the constraint per leg, so the Filament 5 legs pass even before the widen; they prove the code
    works on v5, and the next commit makes `composer.json` allow it.
 2. `feat: support Filament 5` (widen the constraint; all legs green).
-3. `ci: run static analysis on both Filament majors` (PHPStan matrix plus coverage pin).
+3. `ci: run static analysis on both Filament majors` (Filament 4 PHPStan job plus pins).
 4. `docs: document Filament 5 support` (README, website, architecture, CLAUDE.md, ideas).
 
 Then close #20 with a link to the PR. No merge or release tag without the maintainer's go-ahead.
