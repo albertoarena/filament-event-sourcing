@@ -55,9 +55,11 @@ explicit exception to Hard Rule 6.
 
 ## Tech stack and constraints
 
-- PHP `^8.2`, Laravel `^11.0|^12.0`
-- `filament/filament: ^4.0` — pinned to v4. v5 adds only Livewire v4 support (no functional
-  changes), so v5 can be added to the constraint later once it is GA. Write against v4 APIs.
+- PHP `^8.2`, Laravel `^11.0|^12.0|^13.0`
+- `filament/filament: ^4.0|^5.0` — both majors supported and tested in CI. v5 changed no API this
+  package touches; it raises the minimums to Livewire 4 and Tailwind 4. Write against APIs that
+  exist in both majors and verify against vendor source on each. CI does not run PHP 8.2 on
+  Filament 5: the Pest 3 Livewire plugin cannot install alongside Livewire 4.
 - `spatie/laravel-event-sourcing: ^7.0` (require, not suggest — it is the point of the package)
 - `spatie/laravel-package-tools` for the service provider
 - Dev: `orchestra/testbench`, `pestphp/pest` + `pest-plugin-laravel` + `pest-plugin-livewire`,
@@ -158,9 +160,11 @@ Run through this every time, before every commit. Do not commit until all applic
 Workflows live in `.github/workflows/`:
 
 - `tests.yml` — runs the Pest suite on push and pull request across the matrix
-  (PHP 8.2/8.3/8.4 × Laravel 11/12 × Filament 4; exclude impossible combos). Created in Phase 0.
-- `static.yml` — runs Larastan (level 6) and Pint (`--test`) on push and pull request.
-  Created in Phase 0.
+  (PHP 8.2/8.3/8.4/8.5 × Laravel 11/12/13 × Filament 4/5; exclude impossible combos). The
+  `Coverage` job is pinned to Filament 5. Created in Phase 0.
+- `static.yml` — runs Larastan (level 6) on Filament 4 and 5, and Pint (`--test`), on push and
+  pull request. `Coverage` and `PHPStan and Pint` are required status checks on `main`; do not
+  rename them. Created in Phase 0.
 - `deploy-website.yml` — builds the Astro docs site in `website/` (`npm ci && npm run build`)
   and deploys the static output to GitHub Pages. Triggered on push to the default branch
   (path-filtered to `website/**`) and manually via `workflow_dispatch`. Created in Phase 8.

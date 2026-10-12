@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Support for Filament 5. The package now installs on Filament 4 and 5 with no
+  code changes on your side. CI runs the full suite on both majors for every
+  supported PHP and Laravel combination, except PHP 8.2 on Filament 5, where the
+  test tooling cannot install. Static analysis runs against both majors.
+
 ## [1.1.0] - 2026-08-05
 
 ### Added

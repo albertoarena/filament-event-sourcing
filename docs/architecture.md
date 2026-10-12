@@ -78,7 +78,7 @@ responsibility; the package neither assumes nor sets them.
 
 ## 4. Stored Events browser (read-only resource)
 
-A Filament v4 resource over Spatie's stored event model.
+A Filament resource over Spatie's stored event model.
 
 - **List page only + view modal/page.** No create, no edit, no delete. `canCreate(): false` etc.
 - Table columns: `id`, `aggregate_uuid` (copyable), `aggregate_version`, event class

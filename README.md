@@ -35,7 +35,7 @@ The action lists the aggregate's events in order, with the version, timestamp an
 
 - PHP `^8.2`
 - Laravel `^11.0 | ^12.0 | ^13.0` (Laravel 13 requires PHP 8.3 or newer)
-- Filament `^4.0`
+- Filament `^4.0 | ^5.0` (CI tests Filament 5 on PHP 8.3 or newer)
 - spatie/laravel-event-sourcing `^7.0`
 
 ## Installation
