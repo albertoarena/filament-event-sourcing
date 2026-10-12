@@ -12,9 +12,18 @@ updates:
       github-actions:
         patterns:
           - '*'
+      github-actions-security:
+        applies-to: security-updates
+        patterns:
+          - '*'
 
   # Composer dependencies (runtime and dev). Minor and patch bumps are grouped
   # into a single PR to keep the noise down; majors open on their own.
+  #
+  # Security updates are a separate Dependabot flow and the version-update
+  # groups do not cover them. Without an `applies-to: security-updates` group,
+  # every advisory opens its own PR, each rewriting the same lockfile and
+  # conflicting with the others. Each ecosystem below has one.
   - package-ecosystem: composer
     directory: /
     schedule:
@@ -26,6 +35,10 @@ updates:
         update-types:
           - minor
           - patch
+      composer-security:
+        applies-to: security-updates
+        patterns:
+          - '*'
 
   # The Astro documentation website has its own lockfile.
   - package-ecosystem: npm
@@ -39,3 +52,7 @@ updates:
         update-types:
           - minor
           - patch
+      website-security:
+        applies-to: security-updates
+        patterns:
+          - '*'
