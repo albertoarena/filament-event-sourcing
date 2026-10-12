@@ -15,3 +15,6 @@ before it ships.
   reconstituted state, useful for debugging.
 - **Replay all.** A guarded "replay every projector" action. v1 deliberately replays one
   projector at a time to keep the operation predictable.
+- **Test PHP 8.2 on Filament 5.** CI skips this combination because the Pest 3 Livewire
+  plugin requires Livewire 3. Replacing the plugin's `livewire()` helper with core
+  `Livewire::test()` would drop that dev dependency and let the leg run.

@@ -14,6 +14,7 @@ jobs:
       matrix:
         php: ['8.2', '8.3', '8.4', '8.5']
         laravel: ['11.*', '12.*', '13.*']
+        filament: ['4', '5']
         include:
           - laravel: '11.*'
             testbench: '9.*'
@@ -29,8 +30,13 @@ jobs:
           # there. Exercise 8.5 against the current Laravel lines (12 and 13).
           - php: '8.5'
             laravel: '11.*'
+          # PHP 8.2 resolves Pest 3, whose Livewire plugin requires Livewire 3, while
+          # Filament 5 requires Livewire 4. The package still allows this combination;
+          # only the test stack cannot install it.
+          - php: '8.2'
+            filament: '5'
 
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - Filament 4
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - Filament ${{ matrix.filament }}
 
     steps:
       - name: Checkout code
@@ -53,13 +59,16 @@ jobs:
           composer require \
             "laravel/framework:${{ matrix.laravel }}" \
             "orchestra/testbench:${{ matrix.testbench }}" \
-            "filament/filament:^4.0" \
+            "filament/filament:^${{ matrix.filament }}.0" \
             --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-progress
 
       - name: Run tests
         run: composer test
 
+  # "Coverage" is a required status check on main, so keep the name. Coverage
+  # measures the package's own code; pin it to Filament 5 so it never floats
+  # between majors. The test matrix above runs the suite on both.
   coverage:
     runs-on: ubuntu-latest
     name: Coverage
@@ -78,7 +87,9 @@ jobs:
           tools: composer:2.9
 
       - name: Install dependencies
-        run: composer update --prefer-dist --no-interaction --no-progress
+        run: |
+          composer require "filament/filament:^5.0" --no-interaction --no-update
+          composer update --prefer-dist --no-interaction --no-progress
 
       - name: Enforce coverage threshold
         run: composer test-coverage
