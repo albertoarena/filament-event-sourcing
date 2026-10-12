@@ -9,6 +9,8 @@ export default defineConfig({
     starlight({
       title: 'Filament Event Sourcing',
       description: 'Integrate spatie/laravel-event-sourcing with Filament admin panels.',
+      // Versioned so browsers that cached the earlier 404 fetch the icon again.
+      favicon: '/favicon.svg?v=2',
       head: [
         { tag: 'meta', attrs: { property: 'og:image', content: 'https://albertoarena.github.io/filament-event-sourcing/cover.png' } },
         { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://albertoarena.github.io/filament-event-sourcing/cover.png' } },
